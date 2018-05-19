@@ -1,8 +1,8 @@
 {
-  "name": "vue-firebase-auth-vuex",
+  "name": "technicaldebt-ui",
   "version": "1.0.0",
-  "description": "vue firebase auth vuex",
-  "author": "aofdev <aof.dev@gmail.com>",
+  "description": "A UI for the technical debt api",
+  "author": "Tommy Shrove <tshrove@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
