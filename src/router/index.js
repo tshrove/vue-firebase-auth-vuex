@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-const Home = () =>
-  import ("@/components/Home");
 const Profile = () =>
   import ("@/components/User/Profile");
+const Dashboard = () =>
+  import ("@/components/Dashboard/Dashboard");
 const Signup = () =>
   import ("@/components/User/Signup");
 const Signin = () =>
@@ -15,8 +15,7 @@ Vue.use(Router);
 export default new Router({
   routes: [{
       path: "/",
-      name: "Home",
-      component: Home
+      redirect: "/signin"
     },
     {
       path: "/profile",
@@ -24,6 +23,13 @@ export default new Router({
       component: Profile,
       beforeEnter: AuthGuard
     },
+    {
+      path: "/dashboard",
+      name: "Dashboard",
+      component: Dashboard,
+      beforeEnter: AuthGuard
+    },
+
     {
       path: "/signup",
       name: "Signup",

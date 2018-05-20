@@ -16,25 +16,21 @@ export default {
       commit("setLoading", true);
       commit("clearError");
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            commit("setLoading", false);
-            const newUser = {
-              id: user.uid,
-              name: user.displayName,
-              email: user.email,
-              photoUrl: user.photoURL
-            };
-            commit("setUser", newUser);
-          }
-        )
-        .catch(
-          error => {
-            commit("setLoading", false);
-            commit("setError", error);
-            console.log(error);
-          }
-        );
+        .then(user => {
+          commit("setLoading", false);
+          const newUser = {
+            id: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL
+          };
+          commit("setUser", newUser);
+        })
+        .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+          console.log(error);
+        });
     },
     signUserIn({
       commit
