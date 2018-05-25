@@ -24,7 +24,7 @@
                 <v-layout row>
                   <v-flex xs12>
                     <div class="text-xs-center">
-                      <v-btn round type="submit" :disabled="loading" :loading="loading">
+                      <v-btn block large color="secondary" type="submit" :disabled="loading" :loading="loading">
                         Sign in
                         <v-icon right>lock_open</v-icon>
                         <span slot="loader" class="custom-loader">

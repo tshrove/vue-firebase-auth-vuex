@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-const Profile = () =>
-  import ("@/components/User/Profile");
+const Settings = () =>
+  import ("@/components/User/Settings");
 const Dashboard = () =>
   import ("@/components/Dashboard/Dashboard");
 const Signup = () =>
@@ -18,9 +18,9 @@ export default new Router({
       redirect: "/signin"
     },
     {
-      path: "/profile",
-      name: "Profile",
-      component: Profile,
+      path: "/settings",
+      name: "Settings",
+      component: Settings,
       beforeEnter: AuthGuard
     },
     {

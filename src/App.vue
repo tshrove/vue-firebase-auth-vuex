@@ -16,7 +16,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dark class="primary">
+    <v-toolbar dark flat>
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up "></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">Technical Debt Calcultor</router-link>
@@ -31,7 +31,6 @@
         <v-btn v-if="userIsAuthenticated" flat @click="onLogout">
           <v-icon left dark>exit_to_app</v-icon>
           Logout
-  
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -65,14 +64,14 @@ export default {
       if (this.userIsAuthenticated) {
         menuItems = [
           {
-            icon: "person",
-            title: "Profile",
-            link: "/profile"
-          },
-          {
-            icon: "person",
+            icon: "dashboard",
             title: "Dashboard",
             link: "/dashboard"
+          },
+          {
+            icon: "settings",
+            title: "Settings",
+            link: "/settings"
           }
         ];
       }
