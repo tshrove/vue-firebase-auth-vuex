@@ -58,14 +58,21 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+    error() {
+      return this.$store.getters.error;
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
   },
   methods: {
     onSave() {
-      // this.$store.dispatch("signUserIn", {
-      //   email: this.email,
-      //   password: this.password
-      // });
+      this.$store.dispatch("saveSettings", {
+        url: this.url,
+        username: this.username,
+        password: this.password
+      });
     }
   }
 };

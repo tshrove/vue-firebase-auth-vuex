@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+import "firebase/firestore";
 
 export default {
   state: {
@@ -177,6 +178,31 @@ export default {
     }) {
       firebase.auth().signOut();
       commit("setUser", null);
+    },
+    saveSettings({
+      commit
+    }, payload) {
+      commit("setLoading", true);
+      commit("clearError");
+      if (payload.url != null && payload.username != null && payload.password != null) {
+        var db = firebase.firestore();
+        db.collection("settings").doc(this.getters.user.id).set({
+            url: payload.url,
+            username: payload.username,
+            password: payload.password
+          })
+          .then(function () {
+            commit("setLoading", false);
+            commit("clearError");
+          })
+          .catch(
+            error => {
+              commit("setLoading", false);
+              commit("setError", error);
+              console.log(error);
+            }
+          );
+      }
     }
   },
   getters: {
