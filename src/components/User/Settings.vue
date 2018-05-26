@@ -64,7 +64,14 @@ export default {
     },
     loading() {
       return this.$store.getters.loading;
+    },
+    settings() {
+      return this.$store.getters.settings;
     }
+  },
+  beforeMount() {
+    // call when the page is loading.
+    this.onPageLoad();
   },
   methods: {
     onSave() {
@@ -73,6 +80,11 @@ export default {
         username: this.username,
         password: this.password
       });
+    },
+    onPageLoad() {
+      this.$store.dispatch("loadSettings");
+      this.url = this.settings.url;
+      this.username = this.settings.username;
     }
   }
 };

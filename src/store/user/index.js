@@ -3,11 +3,15 @@ import "firebase/firestore";
 
 export default {
   state: {
-    user: null
+    user: null,
+    settings: null
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+    setSettings(state, payload) {
+      state.settings = payload;
     }
   },
   actions: {
@@ -203,11 +207,45 @@ export default {
             }
           );
       }
-    }
+    },
+    loadSettings({
+      commit
+    }) {
+      commit("setLoading", true);
+      commit("clearError");
+      // get the user's id
+      var userId = this.getters.user.id;
+      // get the firestore instance.
+      var db = firebase.firestore();
+      // get the settings form the firestore.
+      var docRef = db.collection("settings").doc(userId);
+      docRef.get().then(function (doc) {
+        if (doc.exists) {
+          var data = doc.data();
+          console.log("Document data:", data);
+          // save the data to the settings object.
+          commit("setSettings", {
+            url: data.url,
+            username: data.username,
+          });
+        }
+        commit("setLoading", false);
+        commit("clearError");
+      }).catch(
+        error => {
+          commit("setLoading", false);
+          commit("setError", error);
+          console.log(error);
+        }
+      );
+    },
   },
   getters: {
     user(state) {
       return state.user;
+    },
+    settings(state) {
+      return state.settings;
     }
   }
 };
