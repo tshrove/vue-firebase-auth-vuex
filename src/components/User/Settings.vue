@@ -73,6 +73,10 @@ export default {
     // call when the page is loading.
     this.onPageLoad();
   },
+  mounted() {
+    this.url = this.settings.url;
+    this.username = this.settings.username;
+  },
   methods: {
     onSave() {
       this.$store.dispatch("saveSettings", {
@@ -83,8 +87,6 @@ export default {
     },
     onPageLoad() {
       this.$store.dispatch("loadSettings");
-      this.url = this.settings.url;
-      this.username = this.settings.username;
     }
   }
 };
